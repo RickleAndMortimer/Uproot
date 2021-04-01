@@ -1,0 +1,54 @@
+<html>
+
+<head>
+	<script src="script.js">
+
+	</script>
+</head>
+
+<header>
+</header>
+
+<body>
+	<div id="searchbar">
+		<select id="country" name="country">
+			<option value="gb">Great Britain</option>
+			<option value="at">Austria</option>
+			<option value="au">Austrailia</option>
+			<option value="br">Brazil</option>
+			<option value="ca">Canada</option>
+			<option value="de">Germany</option>
+			<option value="fr">Franch</option>
+			<option value="in">India</option>
+			<option value="it">Italy</option>
+			<option value="nl">Netherlands</option>
+			<option value="nz">New Zealand</option>
+			<option value="pl">Poland</option>
+			<option value="ru">Russia</option>
+			<option value="sg">Singapore</option>
+			<option value="us" selected>United States</option>
+			<option value="za">South Africa</option>
+		</select>
+		<input type="text" name="what" id="what" placeholder="What"></input>
+		<input type="text" name="where" id="where" placeholder="Where"></input>
+		<button onclick="onClick()">Search</button>
+		<div id="more-options">
+			<input type="number" name="salary_min" id="salary_min" value=0 placeholder="Minimum Salary Range"></input>
+			<input type="number" name="salary_max" id="salary_max" value=100000 placeholder="Maximum Salary Range"></input>
+			<select id="job_type" name="job_type">
+				<option value="" selected>All</option>
+				<option value="&full_time=1">Full Time</option>
+				<option value="&part_time=1">Part Time</option>
+				<option value="&permanent=1">Permanent</option>
+				<option value="&temporary=1">Temporary</option>
+				<option value="&contract=1">Contract</option>
+			</select>
+		</div>
+	</div>
+	<div id="results"></div>
+</body>
+	
+<footer>
+</footer>
+
+</html>
