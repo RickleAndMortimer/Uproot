@@ -1,12 +1,13 @@
 <html>
 
 <head>
-	<script src="script.js">
-
-	</script>
+	<script src="script.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<title>Uproot</title>
 </head>
 
 <header>
+
 </header>
 
 <body>
@@ -29,10 +30,10 @@
 			<option value="us" selected>United States</option>
 			<option value="za">South Africa</option>
 		</select>
-		<input type="text" name="what" id="what" placeholder="What"></input>
-		<input type="text" name="where" id="where" placeholder="Where"></input>
+		<input type="text" name="what" id="what" class="query" placeholder="What"></input>
+		<input type="text" name="where" id="where" class="query" placeholder="Where"></input>
 		<button onclick="onClick()">Search</button>
-		<div id="more-options">
+		<div id="more_options">
 			<input type="number" name="salary_min" id="salary_min" value=0 placeholder="Minimum Salary Range"></input>
 			<input type="number" name="salary_max" id="salary_max" value=100000 placeholder="Maximum Salary Range"></input>
 			<select id="job_type" name="job_type">
@@ -49,6 +50,7 @@
 </body>
 	
 <footer>
+
 </footer>
 
 </html>
