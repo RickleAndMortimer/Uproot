@@ -8,7 +8,7 @@ let jobs = [];
 function displayResults() {
 	var job_box = document.getElementById("results");
 	//for loops creates the job listings by creating html elements and attaching it to the middle of the page.
-	traits = ['company', 'location', 'created', 'title', 'description', 'category', 'min_salary', 'max_salary']
+	traits = ['company', 'location', 'created', 'title', 'description', 'category', 'salary_min', 'salary_max']
 	if (count > 0) {
 		count_display = document.createElement("p")
 		count_display.innerHTML = count +" results found.";
@@ -37,8 +37,14 @@ function displayResults() {
 					break;
 				  case 'created':
 					child.innerHTML = "Created at: " + value;
+					break;
+				  case 'min_salary':
+				  case 'max_salary':
+					child.innerHTML = "💲" + value;
+					break;
 				  default:
 					child.innerHTML = value;
+					break;
 				}
 				child.setAttribute("class", key);
 				search_result.appendChild(child);
@@ -60,6 +66,7 @@ function onClick() {
   //creates network request and receives a response in JSON, then stores all the jobs found in the JSON format
   let country = document.getElementById("country").value;
   let job_type = document.getElementById("job_type").value;
+  let page = document.getElementById("page").value;
   //extracts user input to be send a query to Adzuna's Job Search API endpoint
   let search_minsalary = document.getElementById("salary_min").value;
   let search_maxsalary = document.getElementById("salary_max").value;
@@ -84,9 +91,10 @@ function onClick() {
         search_result = json["results"][i];
         jobs.push(search_result);
       }
+		document.getElementById("page").max = parseInt(count / results_per_page)
 		displayResults()
     }
   }
-  xhttp.open("GET", "https://api.adzuna.com/v1/api/jobs/" + country + "/search/1" + paramString, true);
+  xhttp.open("GET", "https://api.adzuna.com/v1/api/jobs/" + country + "/search/" + page + paramString, true);
   xhttp.send();
 }
