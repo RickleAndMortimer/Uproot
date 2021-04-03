@@ -72,8 +72,10 @@ function onClick() {
   let search_maxsalary = document.getElementById("salary_max").value;
   let search = document.getElementById("what").value;
   let search_location = document.getElementById("where").value;
+  let sort_by = document.getElementById("sort_by").value;
+  
   var paramString = "?app_id=" + app_id + "&app_key=" + app_key + "&results_per_page=" + results_per_page + "&what=" + search + "&content-type=" + "application/text"
-  paramString += "&where=" + search_location + job_type;
+  paramString += "&where=" + search_location + job_type + "&sort_by=" + sort_by;
   var xhttp = new XMLHttpRequest();
   //deletes preexisting nodes
   parent = document.getElementById("results")
