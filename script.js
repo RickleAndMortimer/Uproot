@@ -4,7 +4,27 @@ let app_id = "c5e04ed9";
 let app_key = "46970fda2dfed7dbe461c83764d02533";
 let results_per_page = 20;
 let jobs = [];
+let list = {'list': []};
+if (document.cookie == "") {
+	document.cookie = "list=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+}
+document.cookie = "list=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+function deleteCookies() {
+	var allCookies = document.cookie.split(';');
+	
+	// The "expire" attribute of every cookie is 
+	// Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+	for (var i = 0; i < allCookies.length; i++)
+		document.cookie = allCookies[i] + "=;expires="
+		+ new Date(0).toUTCString();
 
+}
+deleteCookies();
+document.cookie = "list=" + JSON.stringify(list) + ";";
+cookie = document.cookie;
+console.log("oxygen: " + cookie.substring(13,document.cookie.length) + "\n");
+let list_json = JSON.parse(cookie.substring(13, document.cookie.length));
+console.log(list_json)
 function displayResults() {
 	var job_box = document.getElementById("results");
 	//for loops creates the job listings by creating html elements and attaching it to the middle of the page.
@@ -50,9 +70,19 @@ function displayResults() {
 				search_result.appendChild(child);
 			  }
 			}
+			
+			//TODO add a button that saves objects to a list
 			search_result.setAttribute("class", "search_result")
-			job_box.appendChild(search_result);
 		  }
+		  	add_button = document.createElement("button");
+			add_button.innerHTML = "Add to List"
+			add_button.onclick = function(job) { 
+				list_json.list.push(job);
+				document.cookie = JSON.stringify(list_json);
+				console.log(document.cookie)				
+			}
+			search_result.appendChild(add_button)
+			job_box.appendChild(search_result);
 		}
 	}
 	else {
@@ -75,7 +105,7 @@ function onClick() {
   let sort_by = document.getElementById("sort_by").value;
   
   var paramString = "?app_id=" + app_id + "&app_key=" + app_key + "&results_per_page=" + results_per_page + "&what=" + search + "&content-type=" + "application/text"
-  paramString += "&where=" + search_location + job_type + "&sort_by=" + sort_by;
+  paramString += "&where=" + search_location + job_type + "&sort_by=" + sort_by
   var xhttp = new XMLHttpRequest();
   //deletes preexisting nodes
   parent = document.getElementById("results")
