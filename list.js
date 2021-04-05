@@ -1,12 +1,14 @@
 //parses the cookie into a json file
 //cookie string: {list: []}
-list_json = JSON.parse(document.cookie);
 function displayList() {
+	myStorage = window.localStorage;
+	var job_box = document.getElementById("results");
 	//for loops creates the job listings by creating html elements and attaching it to the middle of the page.
 	traits = ['company', 'location', 'created', 'title', 'description', 'category', 'salary_min', 'salary_max']
-	for (i in list) {
+	for (let key of Object.keys(myStorage)) {
 	  //iterates each job in the jobs array.
-	  job = list_json.list[i]
+	  console.log(myStorage.getItem(key));
+	  job = JSON.parse(myStorage.getItem(key));
 	  job_element = document.createElement("div");
 	  //for loop loops through the keys of job and creates <p> elements that display the value of that key 
 	 for (let [key, value] of Object.entries(job)) {
@@ -41,15 +43,18 @@ function displayList() {
 			job_element.appendChild(child);
 		  }
 		}
-		remove_button = document.createElement("button");
+	  }
+	  	remove_button = document.createElement("button");
 		remove_button.innerHTML = "Remove from list"
-		remove_button.onclick = onRemoveFromList(job);
+		remove_button.setAttribute("onclick", "onRemoveFromList(" + job.id + ")");
+		job_element.setAttribute("id", job.id);
+		job_element.appendChild(remove_button)
 		job_element.setAttribute("class", "list")
 		job_box.appendChild(job_element);
-	  }
 	}
 }
-function onRemoveFromList(job) {
-	list_json.list.remove(job);
-	document.cookie = JSON.stringify(list_json);
+function onRemoveFromList(id) {
+	myStorage.removeItem(id);
+	document.getElementById(id).remove();
+	console.log("Removed: " + id)
 }

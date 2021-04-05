@@ -4,31 +4,13 @@ let app_id = "c5e04ed9";
 let app_key = "46970fda2dfed7dbe461c83764d02533";
 let results_per_page = 20;
 let jobs = [];
-let list = {'list': []};
-if (document.cookie == "") {
-	document.cookie = "list=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
-document.cookie = "list=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-function deleteCookies() {
-	var allCookies = document.cookie.split(';');
-	
-	// The "expire" attribute of every cookie is 
-	// Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-	for (var i = 0; i < allCookies.length; i++)
-		document.cookie = allCookies[i] + "=;expires="
-		+ new Date(0).toUTCString();
 
-}
-deleteCookies();
-document.cookie = "list=" + JSON.stringify(list) + ";";
-cookie = document.cookie;
-console.log("oxygen: " + cookie.substring(13,document.cookie.length) + "\n");
-let list_json = JSON.parse(cookie.substring(13, document.cookie.length));
-console.log(list_json)
-function displayResults() {
+myStorage = window.localStorage;
+
+function displayResults(array) {
 	var job_box = document.getElementById("results");
 	//for loops creates the job listings by creating html elements and attaching it to the middle of the page.
-	traits = ['company', 'location', 'created', 'title', 'description', 'category', 'salary_min', 'salary_max']
+	traits = ['company', 'location', 'created', 'title', 'description', 'category', 'salary_min', 'id']
 	if (count > 0) {
 		count_display = document.createElement("p")
 		count_display.innerHTML = count +" results found.";
@@ -59,7 +41,6 @@ function displayResults() {
 					child.innerHTML = "Created at: " + value;
 					break;
 				  case 'min_salary':
-				  case 'max_salary':
 					child.innerHTML = "💲" + value;
 					break;
 				  default:
@@ -76,11 +57,7 @@ function displayResults() {
 		  }
 		  	add_button = document.createElement("button");
 			add_button.innerHTML = "Add to List"
-			add_button.onclick = function(job) { 
-				list_json.list.push(job);
-				document.cookie = JSON.stringify(list_json);
-				console.log(document.cookie)				
-			}
+			add_button.setAttribute("onclick", "onAddToList(" + JSON.stringify(job) + ")");
 			search_result.appendChild(add_button)
 			job_box.appendChild(search_result);
 		}
@@ -92,6 +69,29 @@ function displayResults() {
 	}  
 }
 
+function onAddToList(job) {
+	if (myStorage.getItem(job.id) == null) {
+		myStorage.setItem(job.id, JSON.stringify(job));
+		console.log("Added " + job.id);
+	}
+	else {
+		console.log("Error: Already added")
+	}
+	console.log(job);
+}
+
+function displayAllJobs() {
+	for (let key of Object.keys(myStorage)) {
+		console.log("Key: " + key + " Value: " + myStorage.getItem(key));
+	}
+}
+
+function clearList() {
+	for (let key of Object.keys(myStorage)) {
+		myStorage.removeItem(key);
+	}
+}
+
 function onClick() {
   //creates network request and receives a response in JSON, then stores all the jobs found in the JSON format
   let country = document.getElementById("country").value;
@@ -99,13 +99,12 @@ function onClick() {
   let page = document.getElementById("page").value;
   //extracts user input to be send a query to Adzuna's Job Search API endpoint
   let search_minsalary = document.getElementById("salary_min").value;
-  let search_maxsalary = document.getElementById("salary_max").value;
   let search = document.getElementById("what").value;
   let search_location = document.getElementById("where").value;
   let sort_by = document.getElementById("sort_by").value;
   
   var paramString = "?app_id=" + app_id + "&app_key=" + app_key + "&results_per_page=" + results_per_page + "&what=" + search + "&content-type=" + "application/text"
-  paramString += "&where=" + search_location + job_type + "&sort_by=" + sort_by
+  paramString += "&where=" + search_location + job_type + "&sort_by=" + sort_by;
   var xhttp = new XMLHttpRequest();
   //deletes preexisting nodes
   parent = document.getElementById("results")
@@ -124,7 +123,7 @@ function onClick() {
         jobs.push(search_result);
       }
 		document.getElementById("page").max = parseInt(count / results_per_page)
-		displayResults()
+		displayResults();
     }
   }
   xhttp.open("GET", "https://api.adzuna.com/v1/api/jobs/" + country + "/search/" + page + paramString, true);
