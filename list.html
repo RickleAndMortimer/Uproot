@@ -1,16 +1,23 @@
+<!DOCTYPE html>
 <html>
-	<head>
 
+	<head>
+		<script src="script.js"></script>
+		<link rel="stylesheet" href="css/list-style.css">
+		<title>Uproot</title>
 	</head> 
 	<body onload= "displayList()"> 
+
 		<div id="google_translate_element"></div>
+		
+		<button onclick="print()" id="print_button">Print your list</button>
 		<div id="results"></div>
-	</body>
-	<script type="text/javascript"> 
+		<script type="text/javascript"> 
 		function googleTranslateElementInit() {
 			new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
 		}
-	</script>
-	<script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-	<script src="list.js"></script>
+		</script>
+		<script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		<script src="js/list.js"></script>
+	</body>
 </html>

@@ -2,7 +2,6 @@
 //TODO create html to replace these default values with values from html page.
 let app_id = "c5e04ed9";
 let app_key = "46970fda2dfed7dbe461c83764d02533";
-let results_per_page = 20;
 let jobs = [];
 
 myStorage = window.localStorage;
@@ -98,6 +97,7 @@ function onClick() {
   let job_type = document.getElementById("job_type").value;
   let page = document.getElementById("page").value;
   //extracts user input to be send a query to Adzuna's Job Search API endpoint
+  let results_per_page = document.getElementById("results_per_page").value;
   let search_minsalary = document.getElementById("salary_min").value;
   let search = document.getElementById("what").value;
   let search_location = document.getElementById("where").value;
@@ -122,6 +122,9 @@ function onClick() {
         search_result = json["results"][i];
         jobs.push(search_result);
       }
+		if (document.getElementById("page").value < 1) {
+			document.getElementById("page").value = 1;
+		}
 		document.getElementById("page").max = parseInt(count / results_per_page)
 		displayResults();
     }
