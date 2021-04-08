@@ -1,22 +1,21 @@
 //user defined parameters
 //TODO create html to replace these default values with values from html page.
 var map;
-let app_id = config.JOB_API_ID;
-let app_key = config.JOB_API_KEY;
-let jobs = [];
 let markers = [];
 let infowindows = [];
 
+let app_id = config.JOB_API_ID;
+let app_key = config.JOB_API_KEY;
+let jobs = [];
+
 myStorage = window.localStorage;
-
-
 
 map_script = document.createElement("script");
 map_script.setAttribute("async", "");
 map_script.setAttribute("src", "https://maps.googleapis.com/maps/api/js?key=" + config.GOOGLE_API_KEY + "&callback=initMap")
 document.body.appendChild(map_script);
 
-function displayResults(array) {
+function displayResults() {
 	var job_box = document.getElementById("results");
 	//for loops creates the job listings by creating html elements and attaching it to the middle of the page.
 	traits = ['company', 'location', 'created', 'title', 'description', 'category', 'salary_min', 'id']
@@ -27,14 +26,7 @@ function displayResults(array) {
 		for (i in jobs) {
 		  //iterates each job in the jobs array.
 		  job = jobs[i]
-		  	marker = createMarker(job.latitude, job.longitude, job.title + "\n" + job.description)
-			markers.push(marker);
-			infowindow = createInfoWindow(job);
-			infowindows.push(infowindow);
-			marker.addListener("click", () => {
-				infowindows[i].open(map,markers[i]);
-			});
-			marker.setMap(map);
+
 		  
 		  let search_result = document.createElement("div");
 		  //for loop loops through the keys of job and creates <p> elements that display the value of that key 
@@ -135,13 +127,24 @@ function onClick() {
   }
   xhttp.onreadystatechange = function () {
     jobs = [];
-    count = 0;
+    deleteMarkers();
+	count = 0;
 	if (this.readyState == 4 && this.status == 200) {
       json = JSON.parse(xhttp.response);
 	  count = json.count;
       results = json["results"];
+	  console.log(results);
 	  for (let i in results) {
         job = json["results"][i];
+		marker = createMarker(job.latitude, job.longitude, job.title + "\n" + job.description)
+		markers.push(marker);
+		
+		infowindow = createInfoWindow(job);
+		infowindows.push(infowindow);
+		marker.addListener("click", () => {
+			infowindows[i].open(map,markers[i]);
+		});
+		marker.setMap(map);
         jobs.push(job);
       }
 		if (document.getElementById("page").value < 1) {
@@ -156,13 +159,21 @@ function onClick() {
   xhttp.send();
 }
 
+function createMarker(lat, lng) {
+  var lat_lng = new google.maps.LatLng(lat, lng);
+  marker = new google.maps.Marker({
+    position: lat_lng,
+    title: job.title,
+  });
+  return marker;
+}
+
 function deleteMarkers() {
 	infowindows.length =0;
 	for (marker of markers) { 
 		marker.setMap(null);	
 	}
 	markers.length = 0;
-	console.log(markers)
 }
 
 function onAddToList(job) {
@@ -187,8 +198,7 @@ function createInfoWindow(job) {
     '<div id="description" class="content_header">' +
     '<p>' + job.description + '</p>' +
     '<p><a href="' + job.redirect_url + '">Apply Here</a></p>'+
-	"</div>" +
-	'<button id="addbutton" onclick="onAddToList(' + JSON.stringify(job) + ')"></button>'
+	'</div>' +
     "</div>" +
 	"</div>";
   const infowindow = new google.maps.InfoWindow({
@@ -202,13 +212,4 @@ function initMap() {
 	center: { lat: 0, lng: 0},
 	zoom: 2,
   });
-}
-
-function createMarker(lat, lng) {
-  var lat_lng = new google.maps.LatLng(lat, lng);
-  marker = new google.maps.Marker({
-    position: lat_lng,
-    title: job.title,
-  });
-  return marker;
 }
