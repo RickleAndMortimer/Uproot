@@ -14,10 +14,11 @@ select {
 	height:50px;
 }
 #searchbar {
-	width: 50%;
-	height: 15%;
+	width: 600px;
+	height: 500px;
 	float:left;
-	margin-left: 30px;
+	margin-right: 50px;
+	margin-left: 50px;
 }
 #salary_min {
 	width:20%;
@@ -41,6 +42,11 @@ select {
 	width:10%;
 }
 
+#results {
+	height:2000px;
+	width: 1500px;
+	margin: 50px, 50px;
+}
 /*** Style for the text in each search result ***/
 .min_salary {
 	
