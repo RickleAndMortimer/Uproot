@@ -1,8 +1,11 @@
 //user defined parameters
 //TODO create html to replace these default values with values from html page.
+var map;
 let app_id = "c5e04ed9";
 let app_key = "46970fda2dfed7dbe461c83764d02533";
 let jobs = [];
+let markers = [];
+let infowindows = [];
 
 myStorage = window.localStorage;
 
@@ -17,7 +20,16 @@ function displayResults(array) {
 		for (i in jobs) {
 		  //iterates each job in the jobs array.
 		  job = jobs[i]
-		  search_result = document.createElement("div");
+		  	marker = createMarker(job.latitude, job.longitude, job.title + "\n" + job.description)
+			markers.push(marker);
+			infowindow = createInfoWindow(job);
+			infowindows.push(infowindow);
+			marker.addListener("click", () => {
+				infowindows[i].open(map,markers[i]);
+			});
+			marker.setMap(map);
+		  
+		  let search_result = document.createElement("div");
 		  //for loop loops through the keys of job and creates <p> elements that display the value of that key 
 		 for (let [key, value] of Object.entries(job)) {
 			var child = document.createElement("p");
@@ -50,11 +62,14 @@ function displayResults(array) {
 				search_result.appendChild(child);
 			  }
 			}
-			
-			//TODO add a button that saves objects to a list
-			search_result.setAttribute("class", "search_result")
+			search_result.setAttribute("class", "search_result");
 		  }
-		  	add_button = document.createElement("button");
+		 var center_latlng = new google.maps.LatLng(jobs[0].latitude, jobs[0].longitude);
+		  map.setCenter(center_latlng);
+		  map.setZoom(16);
+		  //adds the add button to place things on the list
+
+			add_button = document.createElement("button");
 			add_button.innerHTML = "Add to List"
 			add_button.setAttribute("onclick", "onAddToList(" + JSON.stringify(job) + ")");
 			search_result.appendChild(add_button)
@@ -98,7 +113,7 @@ function onClick() {
   let page = document.getElementById("page").value;
   //extracts user input to be send a query to Adzuna's Job Search API endpoint
   let results_per_page = document.getElementById("results_per_page").value;
-  let search_minsalary = document.getElementById("salary_min").value;
+  let min_salary = document.getElementById("salary_min").value;
   let search = document.getElementById("what").value;
   let search_location = document.getElementById("where").value;
   let sort_by = document.getElementById("sort_by").value;
@@ -119,8 +134,8 @@ function onClick() {
 	  count = json.count;
       results = json["results"];
 	  for (let i in results) {
-        search_result = json["results"][i];
-        jobs.push(search_result);
+        job = json["results"][i];
+        jobs.push(job);
       }
 		if (document.getElementById("page").value < 1) {
 			document.getElementById("page").value = 1;
@@ -128,7 +143,65 @@ function onClick() {
 		document.getElementById("page").max = parseInt(count / results_per_page)
 		displayResults();
     }
+		
   }
   xhttp.open("GET", "https://api.adzuna.com/v1/api/jobs/" + country + "/search/" + page + paramString, true);
   xhttp.send();
+}
+
+function deleteMarkers() {
+	infowindows.length =0;
+	for (marker of markers) { 
+		marker.setMap(null);	
+	}
+	markers.length = 0;
+	console.log(markers)
+}
+
+function onAddToList(job) {
+	if (myStorage.getItem(job.id) == null) {
+		myStorage.setItem(job.id, JSON.stringify(job));
+		console.log("Added " + job.id);
+	}
+	else {
+		console.log("Error: Already added")
+	}
+	console.log(job);
+}
+
+function createInfoWindow(job) {
+	const contentString =
+	'<div id="content">' + 
+    '<div id="infowindow">' +
+    '<h1 id="title" class="content_header">' + job.title + '</h1>' +
+    '<h2 id="company" class="content_header">' + job.company.display_name + '</h2>' +
+    '<h3 id="category" class="content_header">' + job.category.label + '</h3>' +
+	'<h4 id="location" class="content_header">' + job.location.display_name + '</h3>' +
+    '<div id="description" class="content_header">' +
+    '<p>' + job.description + '</p>' +
+    '<p><a href="' + job.redirect_url + '">Apply Here</a></p>'+
+	"</div>" +
+	'<button id="addbutton" onclick="onAddToList(' + JSON.stringify(job) + ')"></button>'
+    "</div>" +
+	"</div>";
+  const infowindow = new google.maps.InfoWindow({
+    content: contentString,
+  });
+  return infowindow;
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+	center: { lat: 0, lng: 0},
+	zoom: 2,
+  });
+}
+
+function createMarker(lat, lng) {
+  var lat_lng = new google.maps.LatLng(lat, lng);
+  marker = new google.maps.Marker({
+    position: lat_lng,
+    title: job.title,
+  });
+  return marker;
 }
