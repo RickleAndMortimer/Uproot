@@ -1,20 +1,24 @@
 /*** Style for the buttons, dropdown menus, and textboxes ***/
 
 input[type=text], input[type=number], input[type=button] {
-	border-radius: 4px;
+	border-radius: 2px;
 	height: 30px;
+	font-family: 'Noto Serif', serif;
+	font-size: 16px;
 }
 
 select {
-	border-radius: 4px;
+	border-radius: 2px;
 	height: 30px;
+	font-family: 'Noto Serif', serif;
+	font-size: 16px;
 }
 #search {
 	width:100px;
 	height:50px;
 }
 #searchbar {
-	width: 600px;
+	width: 700px;
 	height: 500px;
 	float:left;
 	margin-right: 50px;
@@ -44,7 +48,7 @@ select {
 
 #results {
 	height:2000px;
-	width: 1500px;
+	width: 500px;
 	margin: 50px, 50px;
 }
 /*** Style for the text in each search result ***/
@@ -76,10 +80,10 @@ select {
 
 }
 .search_result {
-	width: 50%;
+	width: 600px;
 	padding: 12px 20px;
-	margin: 8px 0;
 	box-sizing: border-box;
 	border: 2px solid black;
-	border-radius: 4px;
+	border-radius: 2px;
+	margin-bottom: 10px;
 }

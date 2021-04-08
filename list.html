@@ -2,20 +2,27 @@
 <html>
 
 	<head>
-		<script src="script.js"></script>
-		<link rel="stylesheet" href="css/list-style.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/map-style.css" />
+		<link rel="stylesheet" type="text/css" href="css/main-style.css">
+		<link rel="stylesheet" type="text/css" href="css/list-style.css">
 		<title>Uproot</title>
-	</head> 
-	<body onload= "displayList()"> 
-
-		<div id="google_translate_element"></div>
 		
-		<button onclick="print()" id="print_button">Print your list</button>
+	</head> 
+	<body onload="displayList()"> 
+		<div id="google_translate_element"></div>
+	
+		<button onclick="print()" id="print_button"><span class="material-icons">print</span></button>
 		<div id="results"></div>
 		<script type="text/javascript"> 
-		function googleTranslateElementInit() {
-			new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-		}
+			function googleTranslateElementInit() {
+				new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+			}
+		</script>
+		<div id="map"></div>
+		<script src="js/list.js"></script>
+		<script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuFz3fkBN99FUYC7o59Hjowhp48x_XQGw&callback=initMap">
 		</script>
 	</body>
 </html>
