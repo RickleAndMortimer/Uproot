@@ -1,5 +1,6 @@
+let myStorage = window.localStorage;
+
 function displayList() {
-	myStorage = window.localStorage;
 	var job_box = document.getElementById("results");
 	//for loops creates the job listings by creating html elements and attaching it to the middle of the page.
 	traits = ['company', 'location', 'created', 'title', 'description', 'category', 'salary_min', 'salary_max']

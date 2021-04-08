@@ -1,13 +1,20 @@
 //user defined parameters
 //TODO create html to replace these default values with values from html page.
 var map;
-let app_id = "c5e04ed9";
-let app_key = "46970fda2dfed7dbe461c83764d02533";
+let app_id = config.JOB_API_ID;
+let app_key = config.JOB_API_KEY;
 let jobs = [];
 let markers = [];
 let infowindows = [];
 
 myStorage = window.localStorage;
+
+
+
+map_script = document.createElement("script");
+map_script.setAttribute("async", "");
+map_script.setAttribute("src", "https://maps.googleapis.com/maps/api/js?key=" + config.GOOGLE_API_KEY + "&callback=initMap")
+document.body.appendChild(map_script);
 
 function displayResults(array) {
 	var job_box = document.getElementById("results");
