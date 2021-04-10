@@ -1,5 +1,37 @@
 /* Style for each item saved in the list */
+.description {
+	font-size: 14px;
+	color: gray;
+}
+
+#print_button {
+	width: 50px;
+	height: 50px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+#results {
+	font-family: 'Noto Serif', serif;
+	display: inline-block;
+	vertical-align: top;
+}
+#map {
+  margin-top: 20px;
+  height: 100%;
+  width: 60%;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+html, body {
+	margin: 0;
+}
+
 .list {
+	flex-direction: column;
 	width: 600px;
 	padding: 12px 20px;
 	box-sizing: border-box;
@@ -8,19 +40,34 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 	margin-left: 10px;
-	font-family: 'Noto Serif', serif;
 }
-#print_button {
-	width: 50px;
-	height: 50px;
-	margin-left: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-#results {
-	font-family: 'Noto Serif', serif;
 
+.title {
+	order: 1;
 }
+.company {
+	order: 2;
+}
+
+.category {
+	order: 3;
+}
+
+.location {
+	order: 4;
+}
+
+.created {
+	order: 5;
+}
+
 .description {
-	font-family: 'Noto Serif', serif;
+	font-size: 14px;
+	color: gray;
+	order: 6;
 }
+.list button {
+	order: 7;
+}
+/* Code for the website to work */
+let map; function initMap() { map = new google.maps.Map(document.getElementById("map"), { center: { lat: -34.397, lng: 150.644 }, zoom: 8, }); }/* Always set the map height explicitly to define the size of the div * element that contains the map. */ #map { height: 100%; } /* Optional: Makes the sample page fill the window. */ html, body { height: 100%; margin: 0; padding: 0; }<!DOCTYPE html> <html> <head> <title>Simple Map</title> <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> <!-- jsFiddle will insert css and js --> </head> <body> <div id="map"></div> <!-- Async script executes immediately and must be after any DOM elements used in callback. --> <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly" async ></script> </body> </html>Open in JSFiddle

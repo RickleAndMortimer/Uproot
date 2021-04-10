@@ -1,29 +1,89 @@
-<!DOCTYPE html>
-<html>
-  <head>
-		<title>Stock Investments</title>
-  </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/article-style.css">
+    <title>Stock Investments</title>
+  	<link rel="shortcut icon" href="pokemon_2.png"/>
 
-  <body>
-		<h1>Stock Investments</h1>
-		<p>A person should invest as soon as they turn 18 to take advantage of compounding interest</p>
-			
-			<hr />		
+</head>
+<body>
+
+    <!--The Navigation bar.-->
+
+
+    <div class="navbar">
+        <div class="container">
+            <a class="logo" href="./index.html"><img src="images/logo.png" alt="Logo"></a>
+            <nav>      
+                <ul class="nav-list">
+                    <li class="nav-education"><a href="">Education</a></li>
+                    <li class="nav-job"><a href="filter.html">Find a Job</a></li>
+                    <li><a href="list.html">My List</a></li>
+			        <li class="nav-lang">
+						<div id="google_translate_element"></div>
+						<script>
+							function googleTranslateElementInit() {
+								new google.translate.TranslateElement(
+									{pageLanguage: 'en'},
+									'google_translate_element'
+								);
+							}
+						</script>
+					</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+	<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!--Title-->
+
+    <div class="primary-title">
+        <h1>Stock Investments</h1>
+    </div>
+
+    <!--Content container-->
+
+    <section class="content">
+        <div class="content-description">
+            <h2>Description:</h2>
+            <p>When you invest, you build the assets that will eventually return you with more money.</p>
+        </div>
+
+        <div class="hz-line"></div>
+
+        <!--Contents-->
 				
-				<h2>Compounding Interest:</h2>
-				<p>The money you contribute will make profits, and those profits reinvested will net you more profit, recycling over a long period.</p>
-					<h3>For example:</h3>
-					<h4>You contributed $1,000 to invest with an interest rate of 10% per year.</h4>
-					<h4>The first year profit would $100, increasing your account from $1,000 to $1,100.</h4>
-				
-			<hr /> 
+		<h3>Compounding Interest:</h3>
+		<p>A person should invest as soon as they turn 18 to take advantage of compounding interest. The money you contribute will make profits, and those profits reinvested will net you more profit, recycling over a long period.</p>
+            <h3>For example:</h3>
+			<p>If you contributed $1,000 to invest with an interest rate of 10% per year, your first year profit would be $100, increasing your account balance to be worth $1,100.</p>
+            <div class="hz-line"></div> 
 
-					<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/59f98754-80c8-43d8-b18c-e4b4c8eb25e3/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210331%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210331T033906Z&X-Amz-Expires=86400&X-Amz-Signature=a0b7ba54bf564b6cc34813d53d4520b5c96d5f56aa528684c100c1efdd84db5d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22">
-					
-			<hr /> 
+			<img class="article-img"src="/css/images/investments-table.png" alt="Table for how much you profit you can gain.">
+            
+            <div class="hz-line"></div>
 
-					<img src="https://content.artofmanliness.com/uploads/2018/07/Power-of-Compound-Interest-1.jpg">
-					<p>source: artofmanliness</p>
-  </body>
+            <img class="article-img" src="https://content.artofmanliness.com/uploads/2018/07/Power-of-Compound-Interest-1.jpg" alt="Graph of the power of compound interest.">
 
+
+    </section>
+    
+    <!--Footer-->
+    
+    <footer>
+        <div class="contact-us">
+            <h2>Contact us!</h2>
+        </div>
+        <div class="vertical-line"></div>
+             <ul>
+                 <img src="/css/images/Gmail_icon_(2020).svg" alt="Gmail icon">
+                 <li><a href="">Email</a></li>
+                 <img id="investing-graph"src="css/images/GitHub-Mark-Light-120px-plus.png" alt="GitHub Icon">
+                 <li><a href="">Git-Hub</a></li>
+             </ul>
+     </footer>
+</body>
 </html>

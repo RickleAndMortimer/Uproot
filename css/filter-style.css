@@ -9,9 +9,13 @@ input[type=text], input[type=number], input[type=button] {
 
 select {
 	border-radius: 2px;
-	height: 30px;
+	height: 35px;
 	font-family: 'Noto Serif', serif;
 	font-size: 16px;
+}
+
+h2 {
+	margin-bottom:15px;
 }
 #search {
 	width:100px;
@@ -23,12 +27,10 @@ select {
 	float:left;
 	margin-right: 50px;
 	margin-left: 50px;
+	margin-top: 10px;
 }
 #salary_min {
 	width:20%;
-}
-#location {
-	
 }
 
 #more_options {
@@ -47,43 +49,49 @@ select {
 }
 
 #results {
-	height:2000px;
+	height:800px;
 	width: 500px;
 	margin: 50px, 50px;
 }
-/*** Style for the text in each search result ***/
-.min_salary {
-	
+#map {
+	height: 600px;
 }
 
-.max_salary {
-	
-}
-
-.location {
-	
-}
-
-.description {
-	color: red;
-}
-
-.title {
-	
-}
-
-.category {
-	
-}
-/* Style for the text fields */
-.query {
-
-}
 .search_result {
 	width: 600px;
 	padding: 12px 20px;
 	box-sizing: border-box;
-	border: 2px solid black;
+	border: 1px solid black;
 	border-radius: 2px;
 	margin-bottom: 10px;
+	display: flex; 
+	flex-direction: column;
+}
+
+.title {
+	order: 1;
+}
+.company {
+	order: 2;
+}
+
+.category {
+	order: 3;
+}
+
+.location {
+	order: 4;
+}
+
+.created {
+	order: 5;
+}
+
+.description {
+	font-size: 14px;
+	color: gray;
+	order: 6;
+}
+.search_result button {
+	order: 7;
 }

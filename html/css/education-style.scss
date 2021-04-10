@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+
+
+body {
+    background-color: white;  
+    color: black;
+    margin: 0;
+    font-family: 'Noto Serif', serif;
+    a {
+        color: black;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+
+    p {
+        font-size: 1em;
+        margin: 0;
+        padding: 0;
+    }
+
+    section {
+        margin: 2em 2.7em;
+    }
+
+    iframe {
+        width: 35em;
+        height: 20em;
+    }
+
+}
+
+// Navigation Bar
+
+.navbar {
+    background-color: white;
+    padding: 0em 2.7em;
+
+    //logo.
+
+    .logo {
+        width: 10px;
+        margin-top: 2px;
+    } 
+
+    //navigation buttons (excluding the logo).
+
+    .container {
+        display: flex;
+        place-content: space-between;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    li {
+        padding: 12px 40px ;  
+    }
+}
+
+//Styling for the contents of the education page
+
+.primary-title {
+    background: rgb(54, 54, 54);
+    padding: 2em 2.7em;
+}
+
+.education-description {
+    margin-bottom: 1.7em;
+}
+
+.education-disclaimer {
+    padding-bottom: 2em;
+    font-weight: bold;
+    color: rgb(243, 79, 79);
+}
+
+.education-line {
+    display: flex;
+    place-content: space-between;
+
+    .category {
+        margin-right: 5em;
+    }
+    ul {
+        list-style-type: none;
+        color: black;
+        padding: 0em;
+        margin: 1em 5em 1em 10em;
+
+        .article-buttons {
+            border: 1px solid black;
+            border-radius: .4em;
+            font-size: 1.4em;
+            font-weight: bold;
+            padding: .4em .5em !important;
+            margin: .2em;
+        }
+
+        .article-buttons:hover {
+            background-color: lightgrey;
+        
+        }
+    }
+}
+
+
+//Horizontal line
+
+.hz-line {
+    background: black;
+    height: .5px;
+    margin: .5em 0em;
+}
+
+//class for making certain font bold
+.percent {
+    font-weight: bold;
+}
+
+//Footer
+
+footer {
+    background-color: rgb(54, 54, 54);
+    display: flex;
+    place-content: space-between;
+    color: white;
+    padding: 0em 70em 0em 2.7em ;
+
+    .vertical-line {
+        border-left: 1px solid white;
+        margin: .7em 0em .7em 0em;
+      }
+        ul {
+            list-style-type: none;
+            margin-top: 1.5em;
+            padding: 0;
+            display: flex;
+            
+        }
+        img {
+            width: 20px;
+            height: 20px;
+        }
+        a {
+            padding:0em 3em 0em 1em;
+            color: white;
+        }
+   
+        
+}

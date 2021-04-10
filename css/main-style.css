@@ -1,16 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400display=swap');
- body {
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400&display=swap%27');
+
+/* Main style for all the pages */
+
+/* general body */
+body {
 	 background-color: white;
 	 color: black;
-	 margin: 0;
 	 font-family: 'Noto Serif', serif;
+	 margin: 0;
 }
- body a {
-	 color: black;
+body a {
 	 text-decoration: none;
 	 margin: 0;
 	 padding: 0;
 }
+
  body h1 {
 	 font-size: 2em;
 	 margin: 0;
@@ -25,10 +29,11 @@
 	 margin: 0;
 	 padding: 4em 0 4em 0;
 }
+/* nav bar */
 .navbar {
     background-color: white;
     padding: 0em 2.7em;
-
+	margin-top: 1em;
     //logo.
 
     .logo {
@@ -67,6 +72,36 @@
  .navbar li {
 	 padding: 12px 40px;
 }
+.navbar a {
+	color: black;
+}
+/* Google Translate Widget */
+.goog-te-gadget .goog-te-combo {
+    margin: 0 !important;
+	border: 0;
+}
+
+.goog-te-combo, .goog-te-banner *, .goog-te-ftab *, .goog-te-menu *, .goog-te-menu2 *, .goog-te-balloon * {
+    font-family: 'Noto', serif !important; 
+    font-size: 14pt !important;
+}
+
+.goog-logo-link {
+    display:none !important;
+} 
+    
+.goog-te-gadget{
+    color: transparent !important;
+}
+
+/* Header */
+.primary-title {
+    background: rgb(54, 54, 54);
+    padding: 2em 2.7em;
+	color:white;
+}
+
+/* Index page containers */
  .hero-container {
 	 display: flex;
 	 place-content: space-between;
@@ -91,9 +126,10 @@
 	 font-weight: bold;
 	 padding: 0.4em 0.5em !important;
 	 display: inline-block;
-	 margin-left: 0;
+	 margin-left: 2em;
 	 margin-top: 10px;
 	 margin-bottom: 10px;
+	 color: black;
 }
  .hero-container .education-btn:hover, .hero-container .search:hover {
 	 background-color: lightgrey;
@@ -104,12 +140,34 @@
 	 padding-right: 4em;
 	 padding-bottom: 272px;
 }
- footer {
-	 background-color: #363636;
-	 display: flex;
-	 place-content: space-between;
-	 color: white;
-	 padding: 0em 70em 0em 2.7em;
+/* footer */
+footer {
+    background-color: rgb(54, 54, 54);
+    display: flex;
+    place-content: space-between;
+    color: white;
+    padding: 0em 70em 0em 2.7em ;
+    .vertical-line {
+        border-left: 1px solid white;
+        margin: .7em 0em .7em 0em;
+      }
+        ul {
+            list-style-type: none;
+            margin-top: 1.5em;
+            padding: 0;
+            display: flex;
+
+        }
+        img {
+            width: 20px;
+            height: 20px;
+        }
+        a {
+            padding:0em 3em 0em 1em;
+            color: white;
+        }
+
+
 }
  footer .vertical-line {
 	 border-left: 1px solid white;
