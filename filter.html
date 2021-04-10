@@ -3,14 +3,43 @@
 
 <head>
 	<title>Uproot</title>
+	<link rel="shortcut icon" href="pokemon_2.png"/>
 	<link rel="stylesheet" type="text/css" href="css/main-style.css">
 	<link rel="stylesheet" type="text/css" href="css/map-style.css" />
 	<link rel="stylesheet" type="text/css" href="css/filter-style.css">	
 </head>
 <body>
+	<!-- Navigation Bar -->
+	<div class="navbar">
+		<div class="container">
+			<a class="logo" href="index.html"><img src="images/logo.png" alt="Logo"></a>
+			<nav>      
+				<ul class="nav-list">
+					<li class="nav-education"><a href="html/education-page.html">Education</a></li>
+					<li class="nav-job"><a href="filter.html">Find a Job</a></li>
+					<li><a href="list.html">My List</a></li>
+					<li>
+						<div id="google_translate_element"></div>
+						<script>
+							function googleTranslateElementInit() {
+								new google.translate.TranslateElement(
+									{pageLanguage: 'en'},
+									'google_translate_element'
+								);
+							}
+						</script>
+						<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="primary-title">
+		<h1>Find A Job</h1>
+	</div>
 	<!-- element that contains the search bar -->
 	<header id="searchbar">
-		<h1>Search Bar</h1>		
+		<h2>Search Bar</h2>		
 		<select id="country">
 			<option value="gb">Great Britain</option>
 			<option value="at">Austria</option>
@@ -29,6 +58,7 @@
 			<option value="us" selected>United States</option>
 			<option value="za">South Africa</option>
 		</select>
+		<!-- What and Where text fields as well as the search button -->
 		<input type="text" id="what" class="query" placeholder="What"></input>
 		<input type="text" id="where" class="query" placeholder="Where"></input>
 		<input type="button" id="search" value="Search" onclick="onClick()"></button>
@@ -37,8 +67,10 @@
 
 	<!-- element that contains the advanced options -->
 	<aside id="more_options">
-		<h1>Advanced Settings</h1>
+		<h2>Advanced Settings</h2>
+		<!-- Minimum Salary -->
 		<input type="number" id="salary_min" min=0 placeholder="Minimum Salary"></input>
+		<!-- Job Type -->
 		<select id="job_type">
 			<option value="" selected>All</option>
 			<option value="&full_time=1">Full Time</option>
@@ -46,7 +78,7 @@
 			<option value="&permanent=1">Permanent</option>
 			<option value="&contract=1">Contract</option>
 		</select>
-		
+		<!-- Sort by options -->
 		<select id="sort_by">
 			<option value="">Sort by </option>
 			<option value="date">Date</option>
@@ -60,7 +92,6 @@
 	<script src="config.js"></script>
 	</script>
 	<script src="js/script.js"></script>
+	
 </body>
-
-
 </html>
