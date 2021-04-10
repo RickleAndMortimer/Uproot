@@ -156,3 +156,21 @@ footer a {
   color: white;
 }
 /*# sourceMappingURL=education-style.css.map */
+/* Google Translate Widget */
+.goog-te-gadget .goog-te-combo {
+    margin: 0 !important;
+	border: 0;
+}
+
+.goog-te-combo, .goog-te-banner *, .goog-te-ftab *, .goog-te-menu *, .goog-te-menu2 *, .goog-te-balloon * {
+    font-family: 'Noto', serif !important; 
+    font-size: 14pt !important;
+}
+
+.goog-logo-link {
+    display:none !important;
+} 
+    
+.goog-te-gadget{
+    color: transparent !important;
+}
